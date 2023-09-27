@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- run pointcloud_to_laserscan node -->
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+        <remap from="cloud_in" to="/pr_loop/tof_points"/>
+        <rosparam>
+            target_frame: vio_odom # Leave disabled to output scan in pointcloud frame
+            transform_tolerance: 0.01
+            min_height: -0.2
+            max_height: 0.4
+
+            angle_min: -3.1415926 # -M_PI
+            angle_max: 3.1415926 # M_PI
+            angle_increment: 0.003 # 0.17degree
+            scan_time: 0.1
+            range_min: 0.1
+            range_max: 5
+            use_inf: true
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 2
+        </rosparam>
+    </node>
+</launch>

@@ -1,0 +1,46 @@
+<launch>
+    <include file="$(find xpkg_urdf_mark1_mcnm)/launch/urdf_mark1_mcnm.launch" />
+
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_robot)/maps/blank_map.yaml"/>
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find nav_robot)/config/mark_1/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find nav_robot)/config/mark_1/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find nav_robot)/config/mark_1/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find nav_robot)/config/mark_1/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find nav_robot)/config/mark_1/move_base_teb_params.yaml" command="load" />
+        <rosparam file="$(find nav_robot)/config/mark_1/teb_local_planner_params.yaml" command="load" />
+        <param name="TebLocalPlannerROS/odom_topic" value="odom"/>
+    </node>
+    <node name="turtle_teleop_key" pkg="turtlesim" type="turtle_teleop_key" output="screen" >
+		<remap from="/turtle1/cmd_vel" to="/cmd_vel"/>
+	</node>
+	<node name="xnode_comm" pkg="xpkg_comm" type="xnode_comm" output="screen" >
+		<param name="dev_list" value="false"/>
+		<param name="com_enable" value="true"/>
+		<param name="com_channel_common" value="false"/>
+		<param name="com_channel_xstd" value="true"/>
+		<param name="tcp_enable" value="false"/>
+		<param name="tcp_channel_common" value="false"/>
+		<param name="tcp_channel_xstd" value="false"/>
+	</node>	
+	<node name="xnode_vehicle" pkg="xpkg_vehicle" type="xnode_vehicle" output="screen" >
+		<!-- <remap from="/odom" to="/car_odom"/> -->
+		<param name="ini_path" value="$(find xpkg_vehicle)/ini/device_id_list.ini"/>
+        <param name="use_car_odom_tf" value="true"/>
+		<param name="show_path" value="true"/>
+		<param name="show_loc" value="false"/>
+		<param name="calc_speed" value="false"/>
+		<param name="mode_lock" value="true"/>
+		<param name="rate_x" value="1.0"/>
+		<param name="rate_y" value="0.5"/>
+		<param name="rate_z" value="0.5"/>
+		<param name="rate_az" value="1.2"/>
+	</node>
+
+    <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 100" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nav_robot)/rviz_cfg/nav_test.rviz" />
+
+</launch>

@@ -1,0 +1,31 @@
+<launch>
+    <!-- run pointcloud_to_laserscan node -->
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pclToScan">
+        <remap from="cloud_in" to="/pcl_for_obstacle"/><!-- 输入pointcloud2点云话题名 -->
+        <!-- <remap from="/scan" to="/pcl_scan"/> -->
+        <rosparam>
+            target_frame: base_link  # 转换PointCloud的目标坐标系
+            transform_tolerance: 0.01 # 在等待从PointCloud的坐标系到target_frame的转换时,可以容忍的延迟时间,单位为秒
+            # 下面两个参数确定一个接收到的PointCloud中,哪些点将被用于生成LaserScan。只有在这个高度范围内的点会被考虑。
+            min_height: 0.05
+            max_height: 0.6
+
+            # 下面三个参数决定了生成的LaserScan的角度范围和角度分辨率。
+            angle_min: -0.5235987 # -M_PI
+            angle_max: 0.5235987 # M_PI
+            angle_increment: 0.003 # 0.17degree
+
+            scan_time: 0.1 # 扫描周期，一般为固定值，代表一个完整的扫描所需要的时间
+            range_min: 0.1 # 扫描范围的最小距离
+            range_max: 4.5 # 扫描范围的最大距离
+            use_inf: false # 决定了当一个扫描距离超过range_max或者未在range_min和range_max之间检测到任何物体时,是否使用无穷大(INF)作为扫描距离的值。
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            # 影响处理PointCloud的并发级别,也就是说影响处理PointCloud队列中的元素和用于处理的线程数量的设置。值为0表示自动检测CPU核心数量并使用,值为1表示单线程运行,值为2或者更大则设置了并行级别。
+            concurrency_level: 2
+        </rosparam>
+    </node>
+</launch>

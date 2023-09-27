@@ -1,0 +1,11 @@
+<library path="lib/libvio_odom">
+
+  <class name="vio_odom/VioOdomNodelet"
+	 type="vio_odom::VioOdomNodelet"
+	 base_class_type="nodelet::Nodelet">
+    <description>
+      Nodelet to charge vio_odom
+    </description>
+  </class>
+
+</library>

@@ -1,0 +1,15 @@
+<launch>
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find nav_robot)/maps/blank_map.yaml"/>
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find nav_robot)/config/mark_1/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find nav_robot)/config/mark_1/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find nav_robot)/config/mark_1/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find nav_robot)/config/mark_1/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find nav_robot)/config/mark_1/move_base_params.yaml" command="load" />
+        <rosparam file="$(find nav_robot)/config/mark_1/dwa_local_planner_params.yaml" command="load" />
+    </node>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nav_robot)/rviz_cfg/nav_test.rviz" />
+
+</launch>

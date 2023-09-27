@@ -1,0 +1,19 @@
+<launch>
+	<include file="$(find xpkg_bringup)/launch/bringup_vehicle/bringup_key_ctrl.launch"/>
+	<node name="vio_odom" pkg="vio_odom" type="vio_odom_node" output="screen" respawn="true">
+		<param name="t_x" value="-0.24"/>
+        <param name="t_y" value="-0.04"/>
+        <param name="t_z" value="-0.235"/>
+		<param name="height_charge" value="true"/>
+		<param name="inv" value="false"/>
+		<param name="point_clound_topic" value="/pr_loop/points_rdf"/>
+		<!-- <param name="point_clound_topic" value="/pr_loop/tof_points"/> -->
+	</node>
+	<include file="$(find pointcloud_to_laserscan)/launch/stereo2ToScan.launch"/>
+	<!-- <node pkg="tf" type="static_transform_publisher" name="base_link_camera_broadcaster" args="0.24 0.04 0.235 -1.57 0 -1.57 /base_link /camera_link 100" /> -->
+	<!-- <node pkg="tf" type="static_transform_publisher" name="laser_base_link_broadcaster" args="0.24 0.04 0.245 0 0 0 /base_link /laser 100" /> -->
+	<node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map /vio_odom 100" />
+	<include file="$(find nav_robot)/launch/mark_teb.launch"/>
+	<!-- <include file="$(find rplidar_ros)/launch/rplidar_s2.launch"/> -->
+</launch>
+
