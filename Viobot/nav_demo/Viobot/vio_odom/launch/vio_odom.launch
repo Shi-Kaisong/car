@@ -6,6 +6,7 @@
         <param name="t_z" value="-0.235"/>
 		<param name="height_charge" value="true"/>
 		<param name="inv" value="false"/>
+		<!-- <param name="point_clound_topic" value="/tof_cloud"/> -->
 		<param name="point_clound_topic" value="/pr_loop/points_rdf"/>
 		<!-- <param name="point_clound_topic" value="/pr_loop/tof_points"/> -->
 	</node>
