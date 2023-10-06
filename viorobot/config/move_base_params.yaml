@@ -15,7 +15,7 @@ controller_frequency: 10.0
 planner_frequency: 1.0  
 
 #路径规划失败后，尝试重新规划几次后才执行恢复行为，如果设置为-1，代表无限重试
-max_planning_retries: 1  
+max_planning_retries: 1   
 
 #当move_base在不活动状态时,是否关掉代价地图的更新
 shutdown_costmaps: false  

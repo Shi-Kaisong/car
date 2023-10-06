@@ -114,8 +114,8 @@ TebLocalPlannerROS:
     #line_start: [0.00, 0.0]
     #line_end: [0.7, 0.0]
     
-    #type: polygon #多边形类型，需要设置各顶点的坐标值
-    #vertices: [[-0.133, -0.125],[-0.133, 0.125],[0.133,0.125],[0.133, -0.125]]
+    type: polygon #多边形类型，需要设置各顶点的坐标值
+    vertices: [[-0.25, -0.75], [-0.25, 0.75], [0.25, 0.75],[0.25, -0.75]] 
 
-    type: polygon
-    vertices: [[-0.2, -0.2], [-0.2, 0.2], [0.2, 0.2], [0.2, -0.2]] #多边形端点坐标 for four_wheel_diff_dl
+    #type: polygon
+    #vertices: [[-0.2, -0.2], [-0.2, 0.2], [0.2, 0.2], [0.2, -0.2]] #多边形端点坐标 for four_wheel_diff_dl
