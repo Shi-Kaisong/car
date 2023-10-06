@@ -48,9 +48,9 @@ git clone https://github.com/shikaison/car.git
 ### 5.进行底盘通信USB权限设置
 详细过程见文档[ET-01产品使用手册]:https://github.com/shikaison/car/blob/main/docx/%E5%A4%A7%E6%97%A0%E4%BA%BA%E8%BD%A6/ET-01%20%E4%BA%A7%E5%93%81%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pdf
 ### 6.其余相关文档在[docx]目录下
-### 6.根据实际情况对mave_base配置文件进行修改
+### 7.根据实际情况对mave_base配置文件等进行修改
 例如地图数据(需要提前建立一个地图先验，如使用viobot提前建图)，小车数据等
-### 7.运行
+### 8.运行
 + 启动底盘小车的通讯连接
 ```
 roslaunch car_top car.launch
