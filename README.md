@@ -47,6 +47,7 @@ git clone https://github.com/shikaison/car.git
 + 主机：viobot
 + 从机：电脑
 + 具体配置方法（仅限ros1。ros2配置方法见文档[用户手册]:https://github.com/shikaison/car/blob/main/docx/viobot/%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C20230705.pdf
+
 （1）修改从机/etc/hosts
 ```
 sudo gedit /etc/hosts
