@@ -44,7 +44,7 @@ git clone https://github.com/shikaison/car.git
 ```
 然后编译
 ### 4. 进行viobot主从机配置
-+ 主机：viobot
++ 主机（设备）：viobot
 + 从机：电脑
 + 具体配置方法（仅限ros1。ros2配置方法见文档[用户手册]:https://github.com/shikaison/car/blob/main/docx/viobot/%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C20230705.pdf
 
@@ -57,8 +57,12 @@ sudo gedit /etc/hosts
 （2）配置从机
 ```
 sudo gedit /home/username/.bashrc   #userbame是自己电脑的用户名
-#在文件最后添加
+```
+在文件最后添加
+```
+export ROS_HOSTNAME=VIO-slave  #VIO-slave为从机的hostname
 export ROS_MASTER_URI=http://192.168.1.100:11311   #192.168.1.100修改为设备对应ip
+export ROS_IP=192.168.1.100   #192.168.1.100修改为设备ip
 ```
 （3）测试
 从机修改并保存好以上两个文件之后，新开一个终端
