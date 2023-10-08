@@ -1,0 +1,6 @@
+<launch>
+	<node name="car" pkg="car_top" type="car_top"  >
+	</node>
+	<node pkg="car_top" type="cmd_vel_trans" name="cmd_vel_trans"  />
+	</node>
+</launch>
